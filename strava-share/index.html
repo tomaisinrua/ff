@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Workout Share Studio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <h1>Workout Share Studio</h1>
+    <p class="tagline">Turn a Strava activity and a photo into a shareable poster</p>
+    <div id="auth-area">
+        <button id="connect-btn" class="btn btn-primary">Connect with Strava</button>
+        <div id="athlete-info" class="athlete-info hidden">
+            <img id="athlete-avatar" alt="">
+            <span id="athlete-name"></span>
+            <button id="logout-btn" class="btn btn-link">Disconnect</button>
+        </div>
+    </div>
+</header>
+
+<main id="app">
+    <section class="card">
+        <h2>1. Choose an activity</h2>
+        <div class="field-row">
+            <select id="activity-select" disabled>
+                <option>Connect with Strava to load your activities</option>
+            </select>
+            <button id="load-more-btn" class="btn" disabled>Load more activities</button>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>2. Add your photo</h2>
+        <input type="file" id="photo-input" accept="image/*">
+        <p class="hint">Your photo stays on your device — it's drawn straight onto the canvas below and never uploaded anywhere.</p>
+    </section>
+
+    <section class="card">
+        <h2>3. Customize</h2>
+        <div class="field-row">
+            <label for="template-select">Template</label>
+            <select id="template-select"></select>
+        </div>
+        <div class="field-row">
+            <label for="caption-input">Caption</label>
+            <input type="text" id="caption-input" maxlength="60" value="Workout complete">
+        </div>
+        <div class="field-row stat-field">
+            <label>Stats to show (pick up to 6)</label>
+            <div id="stat-toggles" class="stat-toggles"></div>
+        </div>
+    </section>
+
+    <section class="card preview-card">
+        <h2>4. Preview &amp; download</h2>
+        <div class="canvas-wrap">
+            <canvas id="preview-canvas" width="1080" height="1920"></canvas>
+        </div>
+        <button id="download-btn" class="btn btn-primary">Download image</button>
+    </section>
+</main>
+
+<p id="status-msg" class="status-msg" role="status"></p>
+
+<footer class="page-footer">
+    <p>Built for personal use with the Strava API. Not affiliated with or endorsed by Strava.</p>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/polyline.js"></script>
+<script src="js/strava.js"></script>
+<script src="js/render.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

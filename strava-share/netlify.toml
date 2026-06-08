@@ -1,0 +1,14 @@
+# Deploy this folder as a Netlify site with its "Base directory" set to
+# `strava-share` (Site settings > Build & deploy > Build settings).
+#
+# Netlify auto-detects the `netlify/functions` folder. The redirect below
+# just gives the function a friendlier path that matches js/config.js.
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
