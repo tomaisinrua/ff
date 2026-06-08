@@ -20,19 +20,41 @@ Only fall back to the steps below if all you have is the Facebook album.
 
 ## Step 1: get the photos onto disk
 
-Facebook's photo pages require login and block automated downloading, so this
-part is a manual browser step (there's no reliable script for it):
+Facebook needs a login and blocks fully-automated scraping, so the two options
+both keep **you** in control of the login.
 
-1. Log into Facebook, open the album:
-   https://www.facebook.com/HELLANDBACKCHALLENGE/photos/
-2. Filter to the album/date for the 6th if there's a separate one.
-3. Bulk-download with a browser extension such as **Imageye**, **Image
-   Downloader**, or **DownThemAll** — scroll to the bottom first so they all
-   load, then grab them in one go.
-4. Save them all into a folder, e.g. `hellandback/` next to this file.
+### Option A — semi-automated with Playwright (recommended)
 
-> Tip: download the largest size available — face matching is much more
-> reliable on higher-resolution images.
+`fb_download.py` opens a real browser, **you** log in yourself (so 2FA /
+checkpoints are fine and no password is stored), then it auto-scrolls the album
+and downloads the photos for you.
+
+```bash
+pip install -r requirements.txt
+playwright install chromium
+python3 fb_download.py --url "https://www.facebook.com/HELLANDBACKCHALLENGE/photos/" --out hellandback
+```
+
+- It pauses after launch — log in, then press ENTER in the terminal.
+- Your session is saved to `fb_profile/` so you only log in once.
+- Full resolution (opens each photo) by default; add `--thumbs-only` for a
+  fast, lower-res first pass.
+- `--max 50` to test on a small batch first; `--pause 3` to go gentler.
+
+> Note: automating Facebook is against their ToS and the page structure changes
+> often, so the selectors in `fb_download.py` may occasionally need a tweak. Use
+> it only for photos you're entitled to view, and keep the pace gentle.
+
+### Option B — fully manual (zero scripting)
+
+1. Log into Facebook, open the album, scroll to the very bottom so all photos
+   load.
+2. Bulk-download with a browser extension such as **Imageye**, **Image
+   Downloader**, or **DownThemAll**.
+3. Save them into a `hellandback/` folder next to this file.
+
+> Tip (either option): grab the largest size available — face matching is much
+> more reliable on higher-resolution images.
 
 ## Step 2: add a couple of selfies of yourself
 
