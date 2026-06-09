@@ -1,0 +1,205 @@
+:root {
+  --bg:       #08080f;
+  --surface:  #12121e;
+  --surface2: #1c1c2e;
+  --border:   #2a2a42;
+  --accent:   #ff5c35;
+  --accent2:  #7c3aed;
+  --text:     #eeeef5;
+  --dim:      #7777aa;
+  --r:        16px;
+  --gap:      14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif;
+  min-height: 100dvh;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 24px);
+}
+
+header {
+  text-align: center;
+  padding: 2rem 1.5rem 0.5rem;
+}
+header h1 {
+  font-size: 1.9rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  background: linear-gradient(130deg, #ff5c35 0%, #ff9a35 45%, #c026d3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+header p {
+  color: var(--dim);
+  font-size: 0.88rem;
+  margin-top: 0.3rem;
+}
+
+main {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.5rem var(--gap) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+/* Steps */
+.step { display: flex; flex-direction: column; gap: 0.6rem; }
+.step-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--dim);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.optional {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.75rem;
+  color: var(--border);
+}
+
+/* Upload zones */
+.upload-zone {
+  position: relative;
+  border: 2px dashed var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  background: var(--surface);
+  min-height: 120px;
+}
+.upload-zone:hover { border-color: var(--accent); }
+.upload-zone.has-image { border-style: solid; border-color: var(--border); }
+.upload-zone.secondary { min-height: 90px; }
+
+.upload-zone input[type=file] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer; z-index: 2;
+}
+.zone-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 1.2rem;
+  height: 100%;
+  pointer-events: none;
+}
+.zone-icon { font-size: 1.8rem; }
+.zone-text { font-size: 0.88rem; color: var(--dim); text-align: center; }
+
+.zone-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+.zone-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.7);
+  pointer-events: none;
+}
+
+/* Fields */
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.field {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 0.92rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+.field::placeholder { color: var(--dim); }
+.field:focus { border-color: var(--accent2); }
+.field.full  { flex: 1 0 100%; }
+.field.half  { flex: 1 1 calc(50% - 4px); min-width: 130px; }
+
+/* Vibe buttons */
+.vibes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.vibe {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  color: var(--dim);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.65rem 0.4rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.vibe.active {
+  background: linear-gradient(135deg, #ff5c35, #c026d3);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* Canvas */
+.preview-step { gap: 0.8rem; }
+.canvas-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--surface);
+}
+.canvas-wrap canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Download */
+.download-btn {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 1rem;
+  background: linear-gradient(135deg, #ff5c35, #c026d3);
+  border: none;
+  border-radius: var(--r);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s;
+}
+.download-btn:active { opacity: 0.85; }
+.download-btn span { font-size: 1rem; }

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Workout Poster</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Workout Poster</h1>
+    <p>Turn your workout into something shareable</p>
+  </header>
+
+  <main>
+
+    <section class="step">
+      <label class="step-label">1 · Route map</label>
+      <div class="upload-zone" id="map-zone">
+        <input type="file" id="map-input" accept="image/*" capture="environment">
+        <div class="zone-inner" id="map-inner">
+          <span class="zone-icon">🗺️</span>
+          <span class="zone-text">Tap to upload map screenshot</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="step">
+      <label class="step-label">2 · Stats or photo <span class="optional">optional</span></label>
+      <div class="upload-zone secondary" id="photo-zone">
+        <input type="file" id="photo-input" accept="image/*" capture="environment">
+        <div class="zone-inner" id="photo-inner">
+          <span class="zone-icon">📊</span>
+          <span class="zone-text">Stats screenshot or your photo</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="step">
+      <label class="step-label">3 · Quick stats <span class="optional">optional</span></label>
+      <div class="fields">
+        <input type="text" id="caption"   placeholder="Activity name  (e.g. Morning Run)" class="field full">
+        <input type="text" id="distance"  placeholder="Distance  (e.g. 10.5 km)"          class="field half">
+        <input type="text" id="duration"  placeholder="Time  (e.g. 52:34)"                 class="field half">
+        <input type="text" id="pace"      placeholder="Pace  (e.g. 5:15 /km)"              class="field half">
+        <input type="text" id="elevation" placeholder="Elev gain  (e.g. 320 m)"            class="field half">
+      </div>
+    </section>
+
+    <section class="step">
+      <label class="step-label">4 · Pick a vibe</label>
+      <div class="vibes">
+        <button class="vibe active" data-t="summit">Summit</button>
+        <button class="vibe"        data-t="velocity">Velocity</button>
+        <button class="vibe"        data-t="mist">Mist</button>
+        <button class="vibe"        data-t="grid">Grid</button>
+      </div>
+    </section>
+
+    <section class="step preview-step">
+      <label class="step-label">5 · Your poster</label>
+      <div class="canvas-wrap">
+        <canvas id="canvas"></canvas>
+      </div>
+    </section>
+
+    <button id="download-btn" class="download-btn">
+      <span>⬇ Save poster</span>
+    </button>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
