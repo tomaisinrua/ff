@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Studio · SD Remote</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div>
+        <h1>Studio</h1>
+        <p>Stable Diffusion remote img2img</p>
+      </div>
+      <button class="config-btn" id="config-toggle" title="API settings">⚙</button>
+    </div>
+  </header>
+
+  <!-- API config panel -->
+  <div class="config-panel" id="config-panel" hidden>
+    <div class="config-inner">
+      <label class="field-label">AUTOMATIC1111 endpoint</label>
+      <div class="endpoint-row">
+        <input type="text" id="api-url" placeholder="http://192.168.1.x:7860" class="field">
+        <button class="test-btn" id="test-btn">Test</button>
+      </div>
+      <p class="config-hint">
+        Start A1111 with <code>--api --listen</code> flags.<br>
+        For remote access tunnel via <code>ngrok http 7860</code> and paste the https URL.
+      </p>
+      <div id="api-status" class="api-status"></div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ── Left column: inputs ── -->
+    <div class="col col-left">
+
+      <section class="card">
+        <h2 class="card-title">1 · Photo</h2>
+        <div class="upload-zone" id="upload-zone">
+          <input type="file" id="photo-input" accept="image/*">
+          <div class="zone-inner" id="zone-inner">
+            <span class="zone-icon">📷</span>
+            <span class="zone-text">Tap to upload photo</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="card-title">2 · Style</h2>
+        <div class="style-grid" id="style-grid">
+          <button class="style-btn active" data-style="ink">🖌 Chinese Ink</button>
+          <button class="style-btn" data-style="geometric">🔷 Geometric</button>
+          <button class="style-btn" data-style="street">🎨 Street Art</button>
+          <button class="style-btn" data-style="lineart">✏️ Line Art</button>
+          <button class="style-btn" data-style="surreal">🌤 Surrealist</button>
+          <button class="style-btn" data-style="custom">✍️ Custom</button>
+        </div>
+
+        <div class="prompt-block" id="prompt-block">
+          <label class="field-label">Prompt</label>
+          <textarea id="prompt" class="field prompt-field" rows="3"></textarea>
+          <label class="field-label neg">Negative prompt</label>
+          <textarea id="negative-prompt" class="field prompt-field" rows="2">ugly, blurry, low quality, watermark, text</textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="card-title">3 · Parameters</h2>
+        <div class="params">
+          <div class="param-row">
+            <label class="param-label">Strength <span class="param-val" id="strength-val">0.65</span></label>
+            <input type="range" id="strength" min="0.1" max="1.0" step="0.05" value="0.65" class="slider">
+          </div>
+          <div class="param-row">
+            <label class="param-label">Steps <span class="param-val" id="steps-val">30</span></label>
+            <input type="range" id="steps" min="10" max="60" step="1" value="30" class="slider">
+          </div>
+          <div class="param-row">
+            <label class="param-label">CFG scale <span class="param-val" id="cfg-val">7</span></label>
+            <input type="range" id="cfg" min="1" max="15" step="0.5" value="7" class="slider">
+          </div>
+          <div class="param-row">
+            <label class="param-label">Batch size <span class="param-val" id="batch-val">4</span></label>
+            <input type="range" id="batch" min="1" max="8" step="1" value="4" class="slider">
+          </div>
+          <div class="seed-row">
+            <label class="param-label">Seed</label>
+            <input type="number" id="seed" value="-1" class="field seed-field" placeholder="-1 = random">
+            <button class="dice-btn" id="dice-btn" title="Random seed">🎲</button>
+          </div>
+        </div>
+      </section>
+
+      <button class="generate-btn" id="generate-btn" disabled>
+        <span id="gen-label">Generate</span>
+      </button>
+
+    </div>
+
+    <!-- ── Right column: results ── -->
+    <div class="col col-right">
+      <div class="results-header">
+        <h2 class="card-title">Results</h2>
+        <div class="results-actions" id="results-actions" hidden>
+          <button class="action-btn" id="tile-btn">Make tile</button>
+          <button class="action-btn" id="dl-all-btn">Download all</button>
+        </div>
+      </div>
+
+      <div class="results-grid" id="results-grid">
+        <div class="empty-state">
+          <span class="empty-icon">✦</span>
+          <span>Generated images will appear here</span>
+        </div>
+      </div>
+
+      <!-- tile output -->
+      <div class="tile-output" id="tile-output" hidden>
+        <h3 class="tile-title">Tiled output</h3>
+        <canvas id="tile-canvas"></canvas>
+        <button class="action-btn dl-tile" id="dl-tile-btn">Download tile</button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- progress overlay -->
+  <div class="progress-overlay" id="progress-overlay" hidden>
+    <div class="progress-box">
+      <div class="spinner"></div>
+      <p id="progress-label">Generating…</p>
+      <p class="progress-sub" id="progress-sub">This may take 15–60 seconds</p>
+      <button class="cancel-btn" id="cancel-btn">Cancel</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
