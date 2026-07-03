@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Shop · Fiadh's Faces</title>
+  <meta name="description" content="Original AI art prints — abstract faces born from the first moments of a life. Fine art prints, canvas, and posters.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="nav-brand" href="../">Fiadh's Faces</a>
+    <div class="nav-links">
+      <a href="../">Gallery</a>
+      <a href="./" class="active">Shop</a>
+      <a href="../studio/">Studio</a>
+      <a href="../marketing/">Marketing</a>
+    </div>
+    <div class="cart-wrap">
+      <button class="cart-btn" id="cart-btn">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="cart-count" hidden>0</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1 id="collection-name">Fiadh's Faces</h1>
+    <p id="collection-tagline">Original AI art from the first moments of a life</p>
+    <div class="preview-badge" id="preview-badge">
+      <span>Preview mode</span> — <a href="#" id="setup-link">Connect your Shopify store</a> to enable purchasing
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All <span class="filter-count" id="count-all"></span></button>
+    <button class="filter-btn" data-filter="print">Fine Art Print</button>
+    <button class="filter-btn" data-filter="canvas">Canvas</button>
+    <button class="filter-btn" data-filter="poster">Poster</button>
+  </div>
+
+  <div class="grid" id="product-grid">
+    <div class="grid-loading">Loading collection…</div>
+  </div>
+
+  <!-- ── Product modal ── -->
+  <div class="modal-overlay" id="modal-overlay" hidden>
+    <div class="modal" id="product-modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div class="modal-body">
+        <div class="modal-img-wrap">
+          <img id="modal-img" src="" alt="">
+        </div>
+        <div class="modal-info">
+          <div class="modal-badge">Original AI Art</div>
+          <h2 class="modal-title" id="modal-title"></h2>
+          <p class="modal-desc">
+            Each piece in this collection began as a photograph taken in the days after Fiadh was born —
+            transformed through Stable Diffusion into a unique work of art.
+          </p>
+
+          <div class="option-group">
+            <label class="option-label">Product type</label>
+            <div class="option-row" id="type-options">
+              <button class="option-btn active" data-type="print">Fine Art Print</button>
+              <button class="option-btn" data-type="canvas">Canvas</button>
+              <button class="option-btn" data-type="poster">Poster</button>
+            </div>
+          </div>
+
+          <div class="option-group">
+            <label class="option-label">Size</label>
+            <div class="option-row" id="size-options">
+              <button class="option-btn size-btn" data-size='8×8"'>8×8"</button>
+              <button class="option-btn size-btn active" data-size='12×12"'>12×12"</button>
+              <button class="option-btn size-btn" data-size='16×16"'>16×16"</button>
+              <button class="option-btn size-btn" data-size='20×20"'>20×20"</button>
+              <button class="option-btn size-btn" data-size='24×24"'>24×24"</button>
+            </div>
+          </div>
+
+          <div class="modal-price" id="modal-price">$45</div>
+          <p class="modal-price-note">Free shipping on orders over $75 · Printed to order</p>
+
+          <div id="shopify-btn-wrap">
+            <!-- Shopify Buy Button renders here when configured -->
+          </div>
+
+          <button class="add-btn" id="add-btn">
+            <span id="add-label">Add to cart</span>
+          </button>
+
+          <div class="modal-meta">
+            <div class="meta-item">
+              <span class="meta-icon">🎨</span>
+              <span>Museum-quality giclée printing</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-icon">📦</span>
+              <span>Ships within 3–5 business days</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-icon">✨</span>
+              <span>Limited edition — each image unique</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Story section ── -->
+  <section class="story">
+    <div class="story-inner">
+      <h2>The story</h2>
+      <p id="story-text"></p>
+    </div>
+  </section>
+
+  <!-- ── Shopify config drawer ── -->
+  <div class="config-drawer" id="config-drawer" hidden>
+    <div class="config-drawer-inner">
+      <div class="config-header">
+        <h3>Connect Shopify</h3>
+        <button class="drawer-close" id="drawer-close">✕</button>
+      </div>
+      <p class="config-hint">
+        1. Create a Shopify store and install <strong>Printful</strong> or <strong>Printify</strong><br>
+        2. Enable the Storefront API in Shopify Admin → Settings → Apps → Develop apps<br>
+        3. Paste your domain and token below — they're saved in your browser only
+      </p>
+      <label class="field-label">Shopify domain</label>
+      <input class="config-field" id="cfg-domain" placeholder="your-store.myshopify.com">
+      <label class="field-label">Storefront API token</label>
+      <input class="config-field" id="cfg-token" type="password" placeholder="public storefront access token">
+      <button class="config-save-btn" id="config-save">Save & connect</button>
+      <div class="config-status" id="config-status"></div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

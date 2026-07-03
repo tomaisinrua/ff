@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Marketing Agent · Fiadh's Faces</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="nav-brand" href="../">Fiadh's Faces</a>
+    <div class="nav-links">
+      <a href="../">Gallery</a>
+      <a href="../shop/">Shop</a>
+      <a href="../studio/">Studio</a>
+      <a href="./" class="active">Marketing</a>
+    </div>
+    <button class="api-key-btn" id="api-key-btn" title="Set Claude API key">🔑 API key</button>
+  </nav>
+
+  <!-- API key modal -->
+  <div class="key-overlay" id="key-overlay" hidden>
+    <div class="key-box">
+      <h3>Claude API key</h3>
+      <p>Your key is saved in this browser only and never sent anywhere except Anthropic's API.</p>
+      <input type="password" class="key-field" id="key-input" placeholder="sk-ant-…">
+      <div class="key-actions">
+        <button class="key-save" id="key-save">Save key</button>
+        <button class="key-cancel" id="key-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <!-- ── Left panel: controls ── -->
+    <div class="panel panel-left">
+
+      <section class="card">
+        <h2 class="card-title">Artwork</h2>
+        <div class="image-picker" id="image-picker">
+          <div class="picker-loading">Loading images…</div>
+        </div>
+        <div class="selected-preview" id="selected-preview" hidden>
+          <img id="preview-img" src="" alt="">
+          <span id="preview-name">—</span>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="card-title">Platform</h2>
+        <div class="platform-grid" id="platform-grid">
+          <button class="platform-btn active" data-platform="instagram">
+            <span class="platform-icon">📸</span>
+            <span>Instagram</span>
+          </button>
+          <button class="platform-btn" data-platform="pinterest">
+            <span class="platform-icon">📌</span>
+            <span>Pinterest</span>
+          </button>
+          <button class="platform-btn" data-platform="facebook_ad">
+            <span class="platform-icon">📣</span>
+            <span>Facebook Ad</span>
+          </button>
+          <button class="platform-btn" data-platform="google_ad">
+            <span class="platform-icon">🔍</span>
+            <span>Google Ad</span>
+          </button>
+          <button class="platform-btn" data-platform="email">
+            <span class="platform-icon">✉️</span>
+            <span>Email</span>
+          </button>
+          <button class="platform-btn" data-platform="press">
+            <span class="platform-icon">📰</span>
+            <span>Press pitch</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="card-title">Tone</h2>
+        <div class="tone-row">
+          <button class="tone-btn active" data-tone="emotional">Emotional</button>
+          <button class="tone-btn" data-tone="artistic">Artistic</button>
+          <button class="tone-btn" data-tone="commercial">Commercial</button>
+          <button class="tone-btn" data-tone="minimal">Minimal</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="card-title">Shop URL <span class="optional">optional</span></h2>
+        <input type="text" class="field" id="shop-url" placeholder="https://your-store.com/products/…" value="">
+      </section>
+
+      <button class="generate-btn" id="generate-btn">
+        <span id="gen-label">Generate content</span>
+      </button>
+
+      <button class="batch-btn" id="batch-btn">
+        Batch all platforms →
+      </button>
+
+    </div>
+
+    <!-- ── Right panel: output ── -->
+    <div class="panel panel-right">
+
+      <div class="output-header">
+        <h2 class="card-title" id="output-platform-title">Output</h2>
+        <div class="output-actions" id="output-actions" hidden>
+          <button class="action-btn" id="copy-btn">Copy</button>
+          <button class="action-btn" id="export-btn">Export .txt</button>
+          <button class="action-btn" id="regen-btn">Regenerate</button>
+        </div>
+      </div>
+
+      <div class="output-area" id="output-area">
+        <div class="empty-state">
+          <div class="empty-icon">✦</div>
+          <div>Select an artwork and platform, then generate content</div>
+          <div class="empty-hint">You'll need a <a href="https://console.anthropic.com" target="_blank">Claude API key</a> — set it with the 🔑 button</div>
+        </div>
+      </div>
+
+      <!-- History -->
+      <div class="history-section" id="history-section" hidden>
+        <h3 class="history-title">History</h3>
+        <div class="history-list" id="history-list"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
