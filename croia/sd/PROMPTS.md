@@ -4,7 +4,42 @@ Made from `../images/croia_00.jpg` with img2img. The styles mirror the families
 in Fiadh's 117 (the numbers in brackets are example Fiadh images, by their index
 in `/images.json`), so the two collections pair up style for style.
 
-## Setup
+## Quick route — the Fiadh workflow (inpaint + style only)
+
+This is how Fiadh's Faces was made: image 0 in A1111's **Inpaint** tab, with just a style as the prompt.
+
+1. **img2img → Inpaint**, and upload `croia/images/croia_00.jpg`.
+2. **Mask:** paint over the whole image with the brush, or skip the brush and use
+   **Inpaint upload** with one of these masks:
+   - `mask_whole_image.png`: everything can change, background included (like Fiadh's
+     concrete walls and desert skies).
+   - `mask_face_only.png`: only the face changes, and the sage background and frame stay.
+3. Settings:
+
+   | Setting | Value |
+   |---|---|
+   | Mask mode | Inpaint masked |
+   | Masked content | **original** (this keeps the layout) |
+   | Inpaint area | Whole picture |
+   | Denoising | 0.55–0.65 (lower = closer to the base) |
+
+4. **Prompt:** just the style, e.g. `Japanese sumi-e`. The one difference from Fiadh is to
+   add **`closed eyes`**. Fiadh's image 0 has one eye open, so SD had nothing to "fix".
+   Croía's eyes are closed, and SD will often try to open them. Put `open eyes, pupils` in
+   the negative prompt too.
+5. **Batch:** `prompts_style_only.txt` has all 40 styles as short lines ("style, sleeping
+   baby, closed eyes"). Load it with **Script → Prompts from file or textbox** in the
+   Inpaint tab. Each plain line is used as the prompt, and the negative prompt comes from
+   the UI box.
+
+If the quick route gives results you like, you're done. The detailed prompts below are for
+styles that come out weak, or for faces where SD keeps opening her eyes (add ControlNet then).
+
+---
+
+## Detailed route — full prompts
+
+### Setup
 
 | Setting | Value | Why |
 |---|---|---|
