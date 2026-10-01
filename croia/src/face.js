@@ -70,11 +70,11 @@ function svg() {
   s += shape(`M${CX},${FY} H${FX + FW} V470 H${CX} Z`, 'url(#gForeR)');
 
   // HAIR: a dark swoop across the crown, heavier on her right (viewer's left) like the photo
-  const hair = `M${FX - 10},430 C${FX + 20},320 290,250 390,244 C450,240 480,262 540,252 C620,238 720,236 790,300 C815,322 830,350 ${FX + FW + 10},380
+  const hair = `M${FX - 10},330 C${FX + 20},200 330,120 470,116 C600,112 700,150 760,210 C790,240 812,275 ${FX + FW + 10},300
     L${FX + FW + 10},${FY - 10} L${FX - 10},${FY - 10} Z`;
   s += shape(hair, 'url(#gHair)');
   // a little baby curl flicking down onto the forehead
-  const curl = `M470,248 C462,292 438,314 404,318 C426,300 436,280 438,252 Z`;
+  const curl = `M470,116 C455,165 430,190 398,196 C420,176 432,150 436,120 Z`;
   s += shape(curl, P.hair);
 
   // CHEEKS: big round cheek shapes under the eyes (drawn before eyes so lids sit on top)
@@ -138,16 +138,16 @@ function svg() {
 
   // Panel outlines (the lead-line grid of the series)
   s += line(`M${CX},${FY} V${ny - 58}`) + line(`M${CX},${ny + 40} V${my - 16}`) + line(`M${CX},${my + 52} V${cy - 58}`) + line(`M${CX},${cy + 58} V${FY + FH}`);
-  s += line(`M365,470 H${CX - 40}`) + line(`M${CX + 40},470 H659`);
-  s += line(`M423,640 H${CX - 60}`) + line(`M${CX + 60},640 H601`);
+  s += line(`M${FX},470 H${CX - 40}`) + line(`M${CX + 40},470 H${FX + FW}`);
+  s += line(`M${FX},640 H${CX - 60}`) + line(`M${CX + 60},640 H${FX + FW}`);
   s += line(hair.split('L')[0]);
   s += line(curl);
   s += line(cheekL) + line(cheekR);
   s += line(`M${FX - 10},760 C${FX + 30},700 300,690 340,740 C360,765 360,800 350,${FY + FH + 10}`);
   s += line(`M${FX + FW + 10},760 C${FX + FW - 30},700 724,690 684,740 C664,765 664,800 674,${FY + FH + 10}`);
 
-  // A small heart tile, for croí ("heart") — tucked into the lower panel
-  const hx = 405, hy = 800;
+  // A small heart tile, for croí ("heart") — tucked beside her right eye
+  const hx = 612, hy = 400;
   const heart = `M${hx},${hy + 22} C${hx - 30},${hy} ${hx - 24},${hy - 26} ${hx},${hy - 12} C${hx + 24},${hy - 26} ${hx + 30},${hy} ${hx},${hy + 22} Z`;
   s += shape(heart, P.rose) + line(heart, 2.4);
 

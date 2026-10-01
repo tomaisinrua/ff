@@ -28,6 +28,9 @@ Pieces are painted procedurally (SVG + filters, rendered by headless Chromium).
 The seed makes each render reproducible.
 
 ```sh
-PLAYWRIGHT_PATH=$(npm root -g)/playwright node croia/src/face.js croia/images/croia_00.jpg
+export PLAYWRIGHT_PATH=$(npm root -g)/playwright
+node croia/src/face.js croia/images/croia_00.jpg          # base face (jpg + svg)
+python3 croia/src/lineart.py && node croia/src/render.js \
+  croia/sd/croia_00_lineart.svg croia/sd/croia_00_lineart_inverted.svg   # ControlNet maps
 PLAYWRIGHT_PATH=$(npm root -g)/playwright node croia/src/paint.js 21 croia/images/croia_21.jpg
 ```
