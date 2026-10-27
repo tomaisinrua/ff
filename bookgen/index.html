@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Book Series Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Book Series Generator</h1>
+    <p>Turn any obsession into a 12-slide deadpan carousel</p>
+  </header>
+
+  <main>
+
+    <section class="step">
+      <label class="step-label">1 · The obsession</label>
+      <input type="text" id="topic" class="field full" placeholder="HYROX, padel, sourdough, Zwift, golf…">
+      <p class="hint">The thing that ate their personality.</p>
+    </section>
+
+    <section class="step">
+      <label class="step-label">2 · Who they were before</label>
+      <input type="text" id="before" class="field full" placeholder="a runner, a cyclist, a normal man">
+      <p class="hint">The identity the obsession replaced.</p>
+    </section>
+
+    <section class="step">
+      <label class="step-label">3 · The cast</label>
+      <div class="fields">
+        <input type="text" id="hero"  class="field half" placeholder="Enthusiast">
+        <input type="text" id="foil"  class="field half" placeholder="Observer">
+      </div>
+      <button class="ghost" id="roll">🎲 Roll posh names</button>
+      <p class="hint">Sebastian and Camilla are funny. Dave and Sarah are not.</p>
+    </section>
+
+    <section class="step">
+      <label class="step-label">4 · Series name <span class="optional">optional</span></label>
+      <input type="text" id="series" class="field full" placeholder="THE GARY B BOOK OF">
+    </section>
+
+    <section class="step">
+      <label class="step-label">5 · What do you need?</label>
+      <div class="vibes">
+        <button class="vibe active" data-mode="write">Write the series</button>
+        <button class="vibe"        data-mode="images">Image prompts</button>
+        <button class="vibe"        data-mode="beats">Beat sheet</button>
+      </div>
+    </section>
+
+    <section class="output">
+      <div class="out-head">
+        <span class="out-title" id="out-title">Your prompt</span>
+        <button class="copy" id="copy">Copy</button>
+      </div>
+      <textarea id="out" readonly spellcheck="false"></textarea>
+      <p class="hint" id="out-hint">Paste into Claude or ChatGPT.</p>
+    </section>
+
+    <details class="laws">
+      <summary>The six laws (why this format works)</summary>
+      <ol>
+        <li><strong>Deadpan, present tense, third person.</strong> No exclamation marks. The narrator finds nothing unusual here.</li>
+        <li><strong>Specific numbers beat vague ones.</strong> Six headbands, not several. Eleven minutes, not barely any. Nothing lands on ten.</li>
+        <li><strong>The Observer never escalates.</strong> Her weapon is the mundane alternative — the thing he could do at home for free.</li>
+        <li><strong>The jargon must be real.</strong> Insiders laugh because it's accurate, outsiders because it's gibberish. Same line, both audiences.</li>
+        <li><strong>One sincere beat near the end.</strong> Chapter 9: "Camilla has never seen him so happy." This is why it's affectionate instead of cruel.</li>
+        <li><strong>Escalate, never resolve.</strong> Nobody learns. It only gets worse. End on VOLUME 1.</li>
+      </ol>
+    </details>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
