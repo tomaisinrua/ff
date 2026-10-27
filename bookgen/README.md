@@ -27,9 +27,13 @@ No Claude needed. Enter a topic and two names, get a copy-paste pack in three
 flavours: the writing prompt, the image prompt pack, or a blank beat sheet to
 fill in yourself. Mobile-first, no build step, no dependencies.
 
-**3. The worked example** — `series/padel/series.md`
+**3. The worked examples** — `series/`
 
-A complete generated series, end to end, to show what good output looks like.
+Complete generated series, end to end, showing what good output looks like:
+
+- `series/coffee/series.md` — Volume 1
+- `series/coffee/volume-2.md` — Volume 2, same cast at higher intensity
+- `series/padel/series.md` — Volume 1
 
 ## The short version of the formula
 
