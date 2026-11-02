@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- macOS. Install with:
+       cp dev.tgtg.watcher.plist ~/Library/LaunchAgents/
+       launchctl load ~/Library/LaunchAgents/dev.tgtg.watcher.plist
+     Replace YOURNAME with your short username. -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>dev.tgtg.watcher</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/YOURNAME/tgtg-watcher/.venv/bin/python</string>
+        <string>/Users/YOURNAME/tgtg-watcher/watcher.py</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/YOURNAME/tgtg-watcher</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/Users/YOURNAME/tgtg-watcher/watcher.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/YOURNAME/tgtg-watcher/watcher.log</string>
+</dict>
+</plist>
